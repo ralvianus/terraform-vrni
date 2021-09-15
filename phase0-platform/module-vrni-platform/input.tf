@@ -8,6 +8,7 @@ variable "network" {}
 ### appliance variables
 variable "vm_name" {}
 variable "remote_ovf_url" {}
+variable "deployment_option" {}
 variable "mgmt-ip" {}
 variable "mgmt-mask" {}
 variable "default-gw" {}

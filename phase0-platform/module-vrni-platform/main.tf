@@ -54,6 +54,7 @@ resource "vsphere_virtual_machine" "vm" {
 	ovf_deploy {
 		disk_provisioning	= "thin"
 		ovf_network_map		= data.vsphere_ovf_vm_template.ovf.ovf_network_map
+		deployment_option = var.deployment_option
 		remote_ovf_url		= data.vsphere_ovf_vm_template.ovf.remote_ovf_url
 	}
 	vapp {

@@ -22,6 +22,7 @@ module "vrni-platform" {
 
 	### appliance variables
 	vm_name		= "vrni.lab01.one"
+	deployment_option = "medium"
 	remote_ovf_url	= "http://172.16.10.1:9000/iso/VMware-vRealize-Network-Insight-6.3.0.1625072760-platform.ova"
 	mgmt-ip		= "172.16.10.121"
 	mgmt-mask	= "255.255.255.0"
