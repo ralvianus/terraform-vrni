@@ -22,7 +22,7 @@ data "vsphere_network" "network" {
 	datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
-resource "vsphere_virtual_machine" "vm" {
+resource "vsphere_virtual_machine" "vmFromRemoteOvf" {
 	datacenter_id	= data.vsphere_datacenter.datacenter.id
 	name		= var.vm_name
 	num_cpus	= 4
