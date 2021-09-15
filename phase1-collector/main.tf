@@ -34,6 +34,9 @@ module "vrni-platform" {
 	dns-server = "172.16.10.1"
 	domain = "lab01.one"
 
+	### NTP config
+	ntp = "172.16.10.1"
+
 	### Proxy Shared Secret
 	Proxy_Shared_Secret = ""
 }

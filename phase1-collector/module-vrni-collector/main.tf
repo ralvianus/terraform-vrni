@@ -60,7 +60,7 @@ resource "vsphere_virtual_machine" "vm" {
 			"Default_Gateway"	= var.default-gw
 			"DNS" = var.dns-server
 			"Domain_Search" = var.domain
-			"NTP" =
+			"NTP" = var.ntp
 			"SSH_User_Password" = var.admin-password
 			"CLI_User_Password" = var.admin-password
 			"Auto-Configure" = "True"

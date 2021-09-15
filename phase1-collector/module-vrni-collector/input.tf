@@ -19,5 +19,8 @@ variable "admin-password" {}
 variable "dns-server" {}
 variable "domain" {}
 
+## ntp configuration
+variable "ntp" {}
+
 ## Proxy shared Secret
 variable "Proxy_Shared_Secret" {}
