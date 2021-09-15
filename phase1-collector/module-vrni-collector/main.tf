@@ -12,6 +12,11 @@ data "vsphere_compute_cluster" "cluster" {
 	datacenter_id = data.vsphere_datacenter.datacenter.id
 }
 
+data "vsphere_host" "host" {
+	name          = var.host
+	datacenter_id = data.vsphere_datacenter.datacenter.id
+}
+
 data "vsphere_network" "network" {
 	name          = var.network
 	datacenter_id = data.vsphere_datacenter.datacenter.id
@@ -21,6 +26,7 @@ data "vsphere_ovf_vm_template" "ovf" {
 	name             = var.vm_name
 	resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
 	datastore_id     = data.vsphere_datastore.datastore.id
+	host_system_id   = data.vsphere_host.host.id
 	remote_ovf_url   = var.remote_ovf_url
 
 	ovf_network_map = {
