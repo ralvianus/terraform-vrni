@@ -21,7 +21,6 @@ data "vsphere_ovf_vm_template" "ovf" {
 	name             = var.vm_name
 	resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
 	datastore_id     = data.vsphere_datastore.datastore.id
-	host_system_id   = data.vsphere_host.host.id
 	remote_ovf_url   = var.remote_ovf_url
 
 	ovf_network_map = {
@@ -39,7 +38,6 @@ resource "vsphere_virtual_machine" "vm" {
   wait_for_guest_ip_timeout = 0
 	resource_pool_id = data.vsphere_ovf_vm_template.ovf.resource_pool_id
 	datastore_id     = data.vsphere_ovf_vm_template.ovf.datastore_id
-	host_system_id   = data.vsphere_ovf_vm_template.ovf.host_system_id
 
 	dynamic "network_interface" {
 		for_each = data.vsphere_ovf_vm_template.ovf.ovf_network_map
