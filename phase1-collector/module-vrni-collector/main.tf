@@ -36,7 +36,6 @@ resource "vsphere_virtual_machine" "vmFromRemoteOvf" {
 
 	network_interface {
 		network_id  = data.vsphere_network.network.id
-		}
 	}
 	ovf_deploy {
 		disk_provisioning	= "thin"
