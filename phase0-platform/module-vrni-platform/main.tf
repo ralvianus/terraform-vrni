@@ -30,7 +30,7 @@ data "vsphere_ovf_vm_template" "ovf" {
 	remote_ovf_url   = var.remote_ovf_url
 
 	ovf_network_map = {
-		"Management" = data.vsphere_network.network.id
+		"VM Network" = data.vsphere_network.network.id
 	}
 }
 
@@ -48,7 +48,7 @@ resource "vsphere_virtual_machine" "vm" {
 	dynamic "network_interface" {
 		for_each = data.vsphere_ovf_vm_template.ovf.ovf_network_map
 		content {
-			"VM Network" = network_interface.value
+			network_id = network_interface.value
 		}
 	}
 	ovf_deploy {
