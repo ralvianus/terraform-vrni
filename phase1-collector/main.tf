@@ -16,7 +16,7 @@ module "vrni-platform" {
 	### vsphere variables
 	datacenter	= "lab01"
 	cluster		= "mgmt"
-	host		= "esx11.lab01.one"
+	host		= "esx15.lab01.one"
 	datastore	= "vsanDatastore "
 	network		= "pg-mgmt"
 
