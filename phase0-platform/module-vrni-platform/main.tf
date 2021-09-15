@@ -57,4 +57,18 @@ resource "vsphere_virtual_machine" "vm" {
 		deployment_option = var.deployment_option
 		remote_ovf_url		= data.vsphere_ovf_vm_template.ovf.remote_ovf_url
 	}
+	vapp {
+		properties = {
+			"IP_Address"	= var.mgmt-ip
+			"Netmask"	= var.mgmt-mask
+			"Default_Gateway"	= var.default-gw
+			"DNS" = var.dns-server
+			"Domain_Search" = var.domain
+			"NTP" = var.ntp
+			"SSH_User_Password" = var.admin-password
+			"CLI_User_Password" = var.admin-password
+			"Auto-Configure" = "True"
+			"Proxy_Shared_Secret" = var.Proxy_Shared_Secret
+		}
+	}
 }
