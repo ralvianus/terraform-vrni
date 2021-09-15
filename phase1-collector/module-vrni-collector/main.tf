@@ -35,12 +35,14 @@ resource "vsphere_virtual_machine" "vm" {
 	host_system_id   = data.vsphere_host.host.id
 
 	network_interface {
-		"VM Network" = data.vsphere_network.network.id
+		network_id  = data.vsphere_network.network.id
 		}
 	}
 	ovf_deploy {
 		disk_provisioning	= "thin"
-		ovf_network_map		= data.vsphere_ovf_vm_template.ovf.ovf_network_map
+		ovf_network_map		= {
+			"VM Network" = data.vsphere_network.network.id
+		}
 		deployment_option = var.deployment_option
 		remote_ovf_url		= var.remote_ovf_url
 	}
