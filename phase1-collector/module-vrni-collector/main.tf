@@ -27,7 +27,6 @@ resource "vsphere_virtual_machine" "vmFromRemoteOvf" {
 	name		= var.vm_name
 	num_cpus	= 4
 	memory		= 12288
-	guest_id	= data.vsphere_ovf_vm_template.ovf.guest_id
 	wait_for_guest_net_timeout = 0
   wait_for_guest_ip_timeout = 0
 	resource_pool_id = data.vsphere_compute_cluster.cluster.resource_pool_id
