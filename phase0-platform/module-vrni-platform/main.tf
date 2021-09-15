@@ -48,7 +48,7 @@ resource "vsphere_virtual_machine" "vm" {
 	dynamic "network_interface" {
 		for_each = data.vsphere_ovf_vm_template.ovf.ovf_network_map
 		content {
-			network_id = network_interface.value
+			"VM Network" = network_interface.value
 		}
 	}
 	ovf_deploy {
@@ -63,64 +63,4 @@ resource "vsphere_virtual_machine" "vm" {
 			"default-gw"	= var.default-gw
 		}
 	}
-}
-
-resource "null_resource" "healthcheck" {
-	triggers = {
-		avi_addresses	= vsphere_virtual_machine.vm.guest_ip_addresses[0]
-		avi-endpoint	= "avic.lab01.one"
-	}
-	provisioner "local-exec" {
-		interpreter	= ["/bin/bash", "-c"]
-		command		= "${path.module}/healthcheck.sh"
-		environment	= {
-			ENDPOINT	= self.triggers.avi-endpoint
-		}
-	}
-}
-
-resource "null_resource" "updateuser" {
-	triggers = {
-		avi-endpoint	= "avic.lab01.one"
-		avi-username	= "admin"
-		avi-oldpass	= "58NFaGDJm(PJH0G"
-		avi-newpass	= var.admin-password
-	}
-	provisioner "local-exec" {
-		interpreter	= ["/bin/bash", "-c"]
-		command		= "${path.module}/updateuser.sh"
-		environment	= {
-			ENDPOINT	= self.triggers.avi-endpoint
-			AVIUSER		= self.triggers.avi-username
-			OLDPASS		= self.triggers.avi-oldpass
-			NEWPASS		= self.triggers.avi-newpass
-		}
-	}
-	depends_on = [
-		null_resource.healthcheck
-	]
-}
-
-resource "null_resource" "updatedns" {
-	triggers = {
-		avi-endpoint	= "avic.lab01.one"
-		avi-username	= "admin"
-		avi-pass	= var.admin-password
-		avi-dns-server = var.dns-server
-		avi-domain = var.domain
-	}
-	provisioner "local-exec" {
-		interpreter	= ["/bin/bash", "-c"]
-		command		= "${path.module}/updatedns.sh"
-		environment	= {
-			ENDPOINT	= self.triggers.avi-endpoint
-			AVIUSER		= self.triggers.avi-username
-			PASS		= self.triggers.avi-pass
-			DNSSERVER = self.triggers.avi-dns-server
-			DOMAIN = self.triggers.avi-domain
-		}
-	}
-	depends_on = [
-		null_resource.updateuser
-	]
 }
