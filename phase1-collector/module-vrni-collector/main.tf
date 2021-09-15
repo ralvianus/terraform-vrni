@@ -44,7 +44,8 @@ resource "vsphere_virtual_machine" "vm" {
   wait_for_guest_ip_timeout = 0
 	resource_pool_id = data.vsphere_ovf_vm_template.ovf.resource_pool_id
 	datastore_id     = data.vsphere_ovf_vm_template.ovf.datastore_id
-
+	host_system_id   = data.vsphere_ovf_vm_template.ovf.host_system_id
+	
 	dynamic "network_interface" {
 		for_each = data.vsphere_ovf_vm_template.ovf.ovf_network_map
 		content {
