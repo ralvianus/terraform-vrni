@@ -40,7 +40,7 @@ resource "vsphere_virtual_machine" "vm" {
 	num_cpus	= data.vsphere_ovf_vm_template.ovf.num_cpus
 	memory		= data.vsphere_ovf_vm_template.ovf.memory
 	guest_id	= data.vsphere_ovf_vm_template.ovf.guest_id
-
+	force_power_off = false
 	resource_pool_id = data.vsphere_ovf_vm_template.ovf.resource_pool_id
 	datastore_id     = data.vsphere_ovf_vm_template.ovf.datastore_id
 	host_system_id   = data.vsphere_ovf_vm_template.ovf.host_system_id
