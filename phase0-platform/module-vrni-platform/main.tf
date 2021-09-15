@@ -57,11 +57,4 @@ resource "vsphere_virtual_machine" "vm" {
 		deployment_option = var.deployment_option
 		remote_ovf_url		= data.vsphere_ovf_vm_template.ovf.remote_ovf_url
 	}
-	vapp {
-		properties = {
-			"mgmt-ip"	= var.mgmt-ip
-			"mgmt-mask"	= var.mgmt-mask
-			"default-gw"	= var.default-gw
-		}
-	}
 }
