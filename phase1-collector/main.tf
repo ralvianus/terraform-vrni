@@ -11,7 +11,7 @@ provider "vsphere" {
 }
 
 module "vrni-platform" {
-	source		= "./module-vrni-platform"
+	source		= "./module-vrni-collector"
 
 	### vsphere variables
 	datacenter	= "lab01"
