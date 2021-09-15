@@ -17,7 +17,7 @@ module "vrni-platform" {
 	datacenter	= "lab01"
 	cluster		= "mgmt"
 	host		= "esx15.lab01.one"
-	datastore	= "vsanDatastore "
+	datastore	= "vsanDatastore"
 	network		= "pg-mgmt"
 
 	### appliance variables
